@@ -1,5 +1,5 @@
 # OptimizePC
-Run this CMD commands and see your PC faster. Cheers.
+Run this CMD commands and see the magic. Cheers.
 
 
 NOTE: Open them as administrator.
