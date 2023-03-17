@@ -1,5 +1,5 @@
 # OptimizePC
-Run this CMD commands and see the magic. Cheers.
+Run this CMD commands scripts and see the magic. Cheers.
 
 
 NOTE: Open them as administrator.
