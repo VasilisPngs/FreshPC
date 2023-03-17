@@ -1,5 +1,5 @@
 # OptimizePC
-Run this command-tools and see your PC better. Cheers.
+Run this command-tools and see your PC faster. Cheers.
 
 
 NOTE: Open them as administrator.
