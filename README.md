@@ -10,7 +10,7 @@ CleanPC: This script clears various caches and logs on a Windows computer, inclu
 
 
 
-UpdateSoftwares: This script checks for updates of installed applications on Windows using two package managers: Winget and Chocolatey. It counts available updates by reading two output files, and updates all packages using the corresponding package manager command. The script deletes the temporary output files and exits after 5 seconds.
+UpdateSoftwares: This script checks for updates of installed applications on Windows using two package managers: Winget and Chocolatey. It counts available updates by reading two output files, and updates all packages using the corresponding package manager command.
 
 
 
