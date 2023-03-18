@@ -1,4 +1,4 @@
-# OptimizePC
+# FreshPC
 Run this CMD commands scripts and see the magic. Cheers.
 
 
