@@ -6,7 +6,7 @@ NOTE: Open them as administrator.
 
 
 
-CleanPC: This batch script clears various caches and logs on a Windows computer, including Windows error reports, Event Log, temporary files, LiveId logs, prefetch files, update cache, DNS cache, system error memory dump and minidump files, and MUI cache. It also renews the IP address.
+CleanPC: This script clears various caches and logs on a Windows computer, including Windows error reports, Event Log, temporary files, LiveId logs, prefetch files, update cache, DNS cache, system error memory dump and minidump files, and MUI cache. It also renews the IP address.
 
 
 
