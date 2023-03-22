@@ -11,7 +11,7 @@ FreshPC: This script clears temporary files and queue list in memory which helps
 
 UpdateSoftwares: This script checks for updates of installed applications on Windows using two package managers: Winget and Chocolatey.
 
-NOTE: 1. If you do not have winget installed on your computer you will be asked if you want to install it. Press Y for Yes.
+NOTE: 1. If you do not have winget installed on your computer you will be asked if you want to install it. Press Y for yes.
 
 NOTE: 2. Install the Chocolatey package to find updates from their database.
 
