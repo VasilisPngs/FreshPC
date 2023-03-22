@@ -1,7 +1,7 @@
 Run this CMD commands scripts and see the magic. Cheers.
 
 
-** Open them as administrator.
+* Open them as administrator.
 
 
 
