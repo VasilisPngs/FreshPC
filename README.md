@@ -1,4 +1,4 @@
-Run this CMD commands scripts and see the magic. Cheers.
+**Run this CMD commands scripts and see the magic. Cheers.**
 
 
 * **Open them as administrator.**
