@@ -40,7 +40,7 @@ if %count%==0 (
     echo %count% updates available. Updating...
 
     REM Upgrade all packages with Winget
-    winget upgrade --all --include-unknown || echo Failed to update with Winget.
+    winget upgrade --all || echo Failed to update with Winget.
 
     REM Upgrade all packages with Chocolatey
     powershell -Command "Start-Process cmd -ArgumentList '/c choco upgrade all --source=https://chocolatey.org/api/v2/' -Verb RunAs" || echo Failed to update with Chocolatey.
@@ -50,8 +50,5 @@ REM Clean up temporary files
 del winget_updates.txt
 del choco_updates.txt
 
-echo Script complete. Exiting in 5 seconds...
-timeout 5
-
-REM Warn user of potential issues
-echo Please note that this script requires elevated privileges to run and depends on third-party package managers, Winget and Chocolatey, which may not be installed or functioning properly on your system. Additionally, blindly updating all packages could potentially cause issues if some packages have compatibility issues with newer versions or require additional configuration before updating. Please use this script with caution and ensure that you have backups or system restore points in place before running.
+echo Script complete. Exiting in 3 seconds...
+timeout 3
