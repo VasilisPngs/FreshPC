@@ -5,11 +5,11 @@ Run this CMD commands scripts and see the magic. Cheers.
 
 
 
-FreshPC: This script clears temporary files and queue list in memory which helps to speed up the system.
+**FreshPC:** This script clears temporary files and queue list in memory which helps to speed up the system.
 
 
 
-UpdateSoftwares: This script checks for updates of installed applications on Windows using two package managers: Winget and Chocolatey.
+**UpdateSoftwares:** This script checks for updates of installed applications on Windows using two package managers: Winget and Chocolatey.
 
 **NOTE:** 1. If you do not have winget installed on your computer you will be asked if you want to install it. Press Y for yes.
 
