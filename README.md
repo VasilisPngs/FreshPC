@@ -5,7 +5,7 @@
 
 
 
-**FreshPC:** This script clears temporary files and queue list in memory which helps to speed up perfomance the system.
+**FreshPC:** This script clears temporary files and the queue list in memory which helps to speed up perfomance the system.
 
 
 
