@@ -16,7 +16,3 @@ NOTE: 1. If you do not have winget installed on your computer you will be asked 
 NOTE: 2. Install the Chocolatey package to find updates from their database.
 
 Open cmd as administrator and paste this: @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-
-
-
-Yes, my friend, it is free of viruses. Check it out without fear.
