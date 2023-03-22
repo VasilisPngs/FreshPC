@@ -9,7 +9,7 @@
 
 
 
-**UpdateSoftwares:** This script checks for updates of installed applications on Windows using two package managers: Winget(Microsoft) and Chocolatey.
+**UpdateSoftwares:** This script checks for updates of installed applications on Windows using two package managers: Winget (Microsoft) and Chocolatey.
 
 **NOTE:** 1. If you do not have winget installed on your computer you will be asked if you want to install it. Press Y for yes.
 
