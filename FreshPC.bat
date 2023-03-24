@@ -16,8 +16,10 @@ del /f /s /q "%USERPROFILE%\AppData\Local\Temp\*.*"
 del /f /s /q "%USERPROFILE%\AppData\Local\Microsoft\Windows\INetCache\*.*"
 
 :: Remove temporary files from all user profiles
-del /f /s /q "%SystemDrive%\Users\*\AppData\Local\Temp\*.*"
-del /f /s /q "%SystemDrive%\Users\*\AppData\Local\Microsoft\Windows\INetCache\*.*"
+for /d %%a in ("%SystemDrive%\Users\*") do (
+    del /f /s /q "%%a\AppData\Local\Temp\*.*"
+    del /f /s /q "%%a\AppData\Local\Microsoft\Windows\INetCache\*.*"
+)
 
 echo.
 echo Temporary files have been cleaned.
