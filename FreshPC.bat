@@ -3,26 +3,30 @@
 REM Check for administrator rights
 NET FILE >NUL 2>&1
 IF NOT '%ERRORLEVEL%' == '0' (
-  echo This script must be run as an Administrator
-  pause>nul
-  exit
+    echo This script must be run as an Administrator
+    pause>nul
+    exit
 )
 
 echo Cleaning temporary files...
 echo.
 
-:: Remove temporary files from the current user's profile
+:: Remove temporary files and folders from the current user's profile
+for /d %%a in ("%USERPROFILE%\AppData\Local\Temp\*") do (
+    rd /s /q "%%a"
+)
 del /f /s /q "%USERPROFILE%\AppData\Local\Temp\*.*"
-del /f /s /q "%USERPROFILE%\AppData\Local\Microsoft\Windows\INetCache\*.*"
 
-:: Remove temporary files from all user profiles
+:: Remove temporary files and folders from all user profiles
 for /d %%a in ("%SystemDrive%\Users\*") do (
+    for /d %%b in ("%%a\AppData\Local\Temp\*") do (
+        rd /s /q "%%b"
+    )
     del /f /s /q "%%a\AppData\Local\Temp\*.*"
-    del /f /s /q "%%a\AppData\Local\Microsoft\Windows\INetCache\*.*"
 )
 
 echo.
-echo Temporary files have been cleaned.
+echo Temporary files and folders have been cleaned.
 
 REM Clear standby list
 echo.
