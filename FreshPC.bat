@@ -3,9 +3,9 @@
 REM Check for administrator rights
 NET FILE >NUL 2>&1
 IF NOT '%ERRORLEVEL%' == '0' (
-    echo This script must be run as an Administrator
-    pause>nul
-    exit
+  echo This script must be run as an Administrator
+  pause>nul
+  exit
 )
 
 echo Cleaning temporary files...
@@ -13,16 +13,32 @@ echo.
 
 :: Remove temporary files and folders from the current user's profile
 for /d %%a in ("%USERPROFILE%\AppData\Local\Temp\*") do (
-    rd /s /q "%%a"
+    pushd "%%a"
+    if exist *.* (
+        del /f /s /q *.*
+    )
+    popd
+    if exist "%%a" (
+        rd /s /q "%%a"
+    )
 )
 del /f /s /q "%USERPROFILE%\AppData\Local\Temp\*.*"
 
 :: Remove temporary files and folders from all user profiles
 for /d %%a in ("%SystemDrive%\Users\*") do (
     for /d %%b in ("%%a\AppData\Local\Temp\*") do (
-        rd /s /q "%%b"
+        pushd "%%b"
+        if exist *.* (
+            del /f /s /q *.*
+        )
+        popd
+        if exist "%%b" (
+            rd /s /q "%%b"
+        )
     )
-    del /f /s /q "%%a\AppData\Local\Temp\*.*"
+    if exist "%%a\AppData\Local\Temp" (
+        rd /s /q "%%a\AppData\Local\Temp"
+    )
 )
 
 echo.
