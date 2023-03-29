@@ -15,6 +15,12 @@ IF NOT "%ERRORLEVEL%" == "0" (
   exit
 )
 
+REM Check if temp folder exists and create it if it doesn't
+if not exist "%temp_folder%" (
+  echo Creating temporary folder...
+  mkdir "%temp_folder%"
+)
+
 echo Cleaning temporary files...
 echo.
 
@@ -25,8 +31,10 @@ RD /s /q "%temp_folder%\"
 :: Remove temporary files and folders from all user profiles
 pushd "%SystemDrive%\Users"
 for /d %%a in (*) do (
-    del /f /s /q "%%a\AppData\Local\Temp\*.*"
-    RD /s /q "%%a\AppData\Local\Temp\"
+    if exist "%%a\AppData\Local\Temp\" (
+        del /f /s /q "%%a\AppData\Local\Temp\*.*"
+        RD /s /q "%%a\AppData\Local\Temp\"
+    )
 )
 popd
 
