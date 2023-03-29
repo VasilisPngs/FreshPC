@@ -10,7 +10,38 @@ if %errorLevel% == 0 (
     exit /b 1
 )
 
+REM Check if Winget is installed
+where winget >nul 2>&1
+if %errorLevel% == 0 (
+    echo Winget is already installed.
+) else (
+    echo Winget is not installed. Installing...
+    powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iwr -useb https://aka.ms/install-winget | iex"
+    if %errorLevel% == 0 (
+        echo Winget installed successfully.
+    ) else (
+        echo Failed to install Winget.
+        exit /b 1
+    )
+)
+
+REM Check if Chocolatey is installed
+where choco >nul 2>&1
+if %errorLevel% == 0 (
+    echo Chocolatey is already installed.
+) else (
+    echo Chocolatey is not installed. Installing...
+    powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iwr -useb https://chocolatey.org/install.ps1 | iex"
+    if %errorLevel% == 0 (
+        echo Chocolatey installed successfully.
+    ) else (
+        echo Failed to install Chocolatey.
+        exit /b 1
+    )
+)
+
 REM Check for updates using Winget and Chocolatey
+set count=0
 for %%i in (winget choco) do (
     echo Checking for updates from %%i...
     %%i outdated > "%%i_updates.txt"
@@ -19,7 +50,11 @@ for %%i in (winget choco) do (
         set /a count+=1
     )
     REM Upgrade all packages
-    %%i upgrade --all || echo Failed to update with %%i.
+    if "%%i"=="choco" (
+        %%i upgrade all -y || echo Failed to update with %%i.
+    ) else (
+        %%i upgrade --all || echo Failed to update with %%i.
+    )
     del "%%i_updates.txt"
 )
 
