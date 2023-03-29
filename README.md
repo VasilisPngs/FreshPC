@@ -5,14 +5,8 @@
 
 
 
-**FreshPC:** This script clears temporary files and the queue list in memory which helps to speed up perfomance the system.
+**FreshPC:** This is a Windows batch script that automates the cleanup of temporary files and the clearing of memory-related components in order to optimize system performance. The script clears the standby list, combined page list, modified page list, working set of all processes, and system working set, in addition to removing temporary files from the current user's profile and all user profiles. This tool can be useful for users who want to optimize their system's performance by freeing up memory and removing unnecessary files.
 
 
 
-**UpdateSoftwares:** This script checks for updates of installed applications on Windows using two package managers: Winget (Microsoft) and Chocolatey.
-
-**NOTE:** 1. If you do not have winget installed on your computer you will be asked if you want to install it. Press Y for yes.
-
-**NOTE:** 2. Install the Chocolatey package to find updates from their database.
-
-**Install Chocolatey package:** Open cmd as administrator and paste this: @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+**UpdateSoftwares:** This is a Windows batch script designed to automate the process of checking for and installing updates using the Winget and Chocolatey package managers. It checks if the necessary package managers are installed, checks for updates, and upgrades packages automatically. It is intended to save time and effort for users who regularly manage packages on Windows.
