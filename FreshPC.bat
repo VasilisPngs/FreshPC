@@ -52,6 +52,11 @@ del /f /s /q "%ProgramFiles(x86)%\*.dmp"
 del /f /s /q "%ProgramFiles%\*.old"
 del /f /s /q "%ProgramFiles(x86)%\*.old"
 
+:: Remove .tmp files from Windows temp directories
+del /f /s /q "C:\Windows\Temp\*.tmp"
+del /f /s /q "C:\Windows\System32\config\systemprofile\AppData\Local\Temp\*.tmp"
+del /f /s /q "C:\Windows\Panther\*.tmp"
+
 echo.
 echo Temporary files, .dmp files, and .old files have been cleaned.
 
@@ -95,10 +100,10 @@ if %errorlevel% EQU 0 (
 
     echo.
     echo Clearing system working set...
-    wmic os set ClearPageFileAtShutdown=True > nul
+wmic os set ClearPageFileAtShutdown=True > nul
 
 ) else (
-    echo Standby list is empty.
+echo Standby list is empty.
 )
 
 echo.
