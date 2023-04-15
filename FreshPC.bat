@@ -2,10 +2,10 @@
 
 REM Set frequently used paths as variables
 set "temp_folder=%USERPROFILE%\AppData\Local\Temp"
-set "emptyStandbyList=%temp%\emptyStandbyList.bat"
-set "flushStandbyList=%temp%\flushStandbyList.bat"
-set "emptyCombinedPageList=%temp%\emptyCombinedPageList.bat"
-set "emptyModifiedPageList=%temp%\emptyModifiedPageList.bat"
+set "emptyStandbyList=%temp_folder%\emptyStandbyList.bat"
+set "flushStandbyList=%temp_folder%\flushStandbyList.bat"
+set "emptyCombinedPageList=%temp_folder%\emptyCombinedPageList.bat"
+set "emptyModifiedPageList=%temp_folder%\emptyModifiedPageList.bat"
 
 REM Check for administrator rights
 NET FILE >NUL 2>&1
@@ -21,7 +21,7 @@ if not exist "%temp_folder%" (
   mkdir "%temp_folder%"
 )
 
-echo Cleaning temporary files...
+echo Cleaning temporary files, .dmp files, and .old files...
 echo.
 
 :: Remove temporary files and folders from the current user's profile
@@ -38,10 +38,24 @@ for /d %%a in (*) do (
 )
 popd
 
-echo.
-echo Temporary files and folders have been cleaned.
+:: Remove .dmp files from the current user's profile
+del /f /s /q "%USERPROFILE%\*.dmp"
 
-REM Clear standby list, combined page list, and modified page list
+:: Remove .old files from the current user's profile
+del /f /s /q "%USERPROFILE%\*.old"
+
+:: Remove .dmp files from Program Files and Program Files (x86)
+del /f /s /q "%ProgramFiles%\*.dmp"
+del /f /s /q "%ProgramFiles(x86)%\*.dmp"
+
+:: Remove .old files from Program Files and Program Files (x86)
+del /f /s /q "%ProgramFiles%\*.old"
+del /f /s /q "%ProgramFiles(x86)%\*.old"
+
+echo.
+echo Temporary files, .dmp files, and .old files have been cleaned.
+
+REM Clear standby list, combined page list, modified page list, and working set of all processes
 echo.
 echo Clearing standby list, combined page list, modified page list, and working set of all processes...
 
