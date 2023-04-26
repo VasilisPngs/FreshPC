@@ -1,16 +1,12 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-REM Set log file path
-set LOGFILE=%~dp0\result.log
-
 REM Check if running with elevated privileges
 net session >nul 2>&1
 if %errorLevel% == 0 (
     echo Running with elevated privileges.
 ) else (
     echo Script requires elevated privileges to run. Please run as an administrator.
-    echo Script aborted. >> %LOGFILE%
     exit /b 1
 )
 
@@ -25,7 +21,6 @@ if %errorLevel% == 0 (
         echo PowerShell installed successfully.
     ) else (
         echo Failed to install PowerShell.
-        echo Script aborted. >> %LOGFILE%
         exit /b 1
     )
 )
@@ -41,7 +36,6 @@ if %errorLevel% == 0 (
         echo Winget installed successfully.
     ) else (
         echo Failed to install Winget.
-        echo Failed to install Winget. >> %LOGFILE%
     )
 )
 
@@ -56,7 +50,6 @@ if %errorLevel% == 0 (
         echo Chocolatey installed successfully.
     ) else (
         echo Failed to install Chocolatey.
-        echo Failed to install Chocolatey. >> %LOGFILE%
     )
 )
 
@@ -64,33 +57,28 @@ REM Check for updates using Winget and Chocolatey
 set count=0
 for %%i in (winget choco) do (
     echo Checking for updates from %%i...
-    %%i outdated > "%%i_updates.txt"
+    %%i outdated > nul 2>&1
     REM Increment count for each package that needs to be updated
-    for /f "tokens=*" %%j in ("%%i_updates.txt") do (
+    if %errorLevel% == 0 (
         set /a count+=1
-    )
-    REM Upgrade all packages
-    if "%%i"=="choco" (
-        %%i upgrade all -y || (
-            echo Failed to update with %%i.
-            echo Failed to update with %%i. >> %LOGFILE%
-        )
-    ) else (
-        %%i upgrade --all || (
-            echo Failed to update with %%i.
-            echo Failed to update with %%i. >> %LOGFILE%
+        REM Upgrade all packages
+        if "%%i"=="choco" (
+            %%i upgrade all -y > nul 2>&1 || (
+                echo Failed to update with %%i.
+            )
+        ) else (
+            %%i upgrade --all > nul 2>&1 || (
+                echo Failed to update with %%i.
+            )
         )
     )
-    del "%%i_updates.txt"
 )
 
 REM Check if any updates are available
 if %count%==0 (
     echo No updates available.
-    echo Script completed successfully. >> %LOGFILE%
 ) else (
     echo %count% updates available. Updating...
-    echo Script completed with updates. >> %LOGFILE%
 )
 
 REM Clean up temporary files
