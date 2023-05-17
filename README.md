@@ -9,6 +9,6 @@
 
 
 
-**UpdateSoftwares:** This is a Windows batch script designed to automate the process of checking for and installing updates using the Winget and Chocolatey package managers. It checks if the necessary package managers are installed, checks for updates, and upgrades packages automatically. It is intended to save time and effort for users who regularly manage packages on Windows.
+**UpdateSoftwares:** This is a Windows batch script designed to automate the process of checking for and installing updates using the Winget package manager. It checks if the necessary package manager are installed, checks for updates, and upgrades packages automatically. It is intended to save time and effort for users who regularly manage packages on Windows.
 
-**NOTE: If winget and chocolatey are not installed on your computer after you first run the tool and it installs them, once it closes, run the tool again and it will work fine.**
+**NOTE: If winget are not installed on your computer after you first run the tool and install them, once it closes, run the tool again and it will work fine.**
