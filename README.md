@@ -2,7 +2,7 @@
 
 
 
-**FreshPC:** This is a Windows batch script that automates the cleanup of temporary files and the clearing of memory-related components to optimize system performance. The script removes temporary files and folders from user profiles, as well as .dmp and .old files from those same locations and .tmp files from Windows temp directories. It then clears various memory-related components, including the standby list, combined page list, modified page list, working set of all processes, and system working set. The script can be useful for users who want to optimize their system's performance by freeing up memory and removing unnecessary files.<br><br>
+**FreshPC:** This is a Windows batch script that automates the cleanup of temporary files and the clearing of memory-related components to optimize system performance. The script removes temporary files and folders from user profiles, as well as .dmp and .old files from those same locations and .tmp files from Windows temp directories. It then clears various memory-related components, including the standby list, combined page list, modified page list, working set of all processes, and system working set. The script can be useful for users who want to optimize their system's performance by freeing up memory and removing unnecessary files.<br><br><br><br>
 
 
 
