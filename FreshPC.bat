@@ -1,4 +1,26 @@
 @echo off
+setlocal
+
+:: BatchGotAdmin
+:-------------------------------------
+REM  --> Check for permissions
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+REM --> If error flag set, we do not have admin.
+if '%errorlevel%' NEQ '0' (
+   echo Requesting administrative privileges...
+   goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+   echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+   set params = %*:"=""
+   echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+
+   "%temp%\getadmin.vbs"
+   del "%temp%\getadmin.vbs"
+   exit /B
+
+:gotAdmin
 
 REM Set frequently used paths as variables
 set "temp_folder=%USERPROFILE%\AppData\Local\Temp"
@@ -6,20 +28,6 @@ set "emptyStandbyList=%temp_folder%\emptyStandbyList.bat"
 set "flushStandbyList=%temp_folder%\flushStandbyList.bat"
 set "emptyCombinedPageList=%temp_folder%\emptyCombinedPageList.bat"
 set "emptyModifiedPageList=%temp_folder%\emptyModifiedPageList.bat"
-
-REM Check for administrator rights
-NET FILE >NUL 2>&1
-IF NOT "%ERRORLEVEL%" == "0" (
-  echo This script must be run as an Administrator
-  pause>nul
-  exit
-)
-
-REM Check if temp folder exists and create it if it doesn't
-if not exist "%temp_folder%" (
-  echo Creating temporary folder...
-  mkdir "%temp_folder%"
-)
 
 echo Cleaning temporary files, .dmp files, and .old files...
 echo.
@@ -96,7 +104,8 @@ if %errorlevel% EQU 0 (
 
     echo.
     echo Clearing working set of all processes...
-    for /f "skip=1" %%a in ('wmic process get processid') do wmic process where "processid=%%a" CALL EmptyWorkingSet
+    for /f "skip=1" %%a in ('wmic process get processid') do wmic process where "processid=%%a" CALL 
+EmptyWorkingSet
 
     echo.
     echo Clearing system working set...
