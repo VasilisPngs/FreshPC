@@ -1,10 +1,9 @@
 @echo off
 setlocal
 
-:: BatchGotAdmin
-:-------------------------------------
 REM  --> Check for permissions
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+>nul 2>&1 icacls %windir%\system32\config\system
+
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
    echo Requesting administrative privileges...
@@ -104,7 +103,7 @@ if %errorlevel% EQU 0 (
 
     echo.
     echo Clearing working set of all processes...
-    for /f "skip=1" %%a in ('wmic process get processid') do wmic process where "processid=%%a" CALL 
+    for /f "skip=1" %%a in ('wmic process get processid') do wmic process where "processid=%%a" CALL
 EmptyWorkingSet
 
     echo.
