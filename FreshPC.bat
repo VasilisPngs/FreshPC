@@ -45,19 +45,37 @@ for /d %%a in (*) do (
 )
 popd
 
-:: Remove .dmp files from the current user's profile
+:: Remove .dmp files from the current user's profile and all subfolders
 del /f /s /q "%USERPROFILE%\*.dmp"
 
-:: Remove .old files from the current user's profile
+:: Remove .old files from the current user's profile and all subfolders
 del /f /s /q "%USERPROFILE%\*.old"
 
 :: Remove .dmp files from Program Files and Program Files (x86)
-del /f /s /q "%ProgramFiles%\*.dmp"
-del /f /s /q "%ProgramFiles(x86)%\*.dmp"
+for /r "%ProgramFiles%" %%a in (*.dmp) do del /f /q "%%a"
+for /r "%ProgramFiles(x86)%" %%a in (*.dmp) do del /f /q "%%a"
 
 :: Remove .old files from Program Files and Program Files (x86)
-del /f /s /q "%ProgramFiles%\*.old"
-del /f /s /q "%ProgramFiles(x86)%\*.old"
+for /r "%ProgramFiles%" %%a in (*.old) do del /f /q "%%a"
+for /r "%ProgramFiles(x86)%" %%a in (*.old) do del /f /q "%%a"
+
+:: Remove .old files from ProgramData and all subfolders
+for /r "%ProgramData%" %%a in (*.old) do del /f /s /q "%%a"
+
+:: Remove .old files from %USERPROFILE%\AppData\Local\
+del /s /q /f /a:h "C:\Users\Vasilis\AppData\Local\*.old"
+
+:: Remove .tmp files from %USERPROFILE%\AppData\Local\
+del /s /q /f "C:\Users\Vasilis\AppData\Local\*.tmp"
+
+:: Remove .dmp files from C:\Windows\LiveKernelReports\WATCHDOG\
+del /f /s /q "C:\Windows\LiveKernelReports\WATCHDOG\*.dmp"
+
+:: Remove .dmp files from C:\Windows\Minidump\
+del /f /s /q "C:\Windows\Minidump\*.dmp"
+
+:: Remove .tmp files from C:\Windows\System32\DriverStore\Temp\
+del /f /s /q "C:\Windows\System32\DriverStore\Temp\*.tmp"
 
 :: Remove .tmp files from Windows temp directories
 del /f /s /q "C:\Windows\Temp\*.tmp"
