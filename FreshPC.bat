@@ -73,10 +73,31 @@ for /r "%ProgramData%" %%a in (*.dmp) do del /f /s /q "%%a"
 for /r "%ProgramData%" %%a in (*.old) do del /f /s /q "%%a"
 
 :: Remove .tmp files from %USERPROFILE%\AppData\Local\
-del /s /q /f "C:\Users\%USERPROFILE%\AppData\Local\*.tmp"
+del /s /q /f "%USERPROFILE%\AppData\Local\*.tmp"
+
+:: Remove .dmp files from %USERPROFILE%\AppData\Local\
+del /s /q /f "%USERPROFILE%\AppData\Local\*.dmp"
 
 :: Remove .old files from %USERPROFILE%\AppData\Local\
-del /s /q /f /a:h "C:\Users\%USERPROFILE%\AppData\Local\*.old"
+del /s /q /f /a:h "%USERPROFILE%\AppData\Local\*.old"
+
+:: Remove .tmp files from %USERPROFILE%\AppData\Roaming
+del /s /q /f "%USERPROFILE%\AppData\Roaming\*.tmp"
+
+:: Remove .dmp files from %USERPROFILE%\AppData\Roaming
+del /s /q /f "%USERPROFILE%\AppData\Roaming\*.dmp"
+
+:: Remove .old files from %USERPROFILE%\AppData\Roaming
+del /s /q /f /a:h "%USERPROFILE%\AppData\Roaming\*.old"
+
+:: Remove .tmp files from %USERPROFILE%\AppData\LocalLow
+del /s /q /f "%USERPROFILE%\AppData\LocalLow\*.tmp"
+
+:: Remove .dmp files from %USERPROFILE%\AppData\LocalLow
+del /s /q /f "%USERPROFILE%\AppData\LocalLow\*.dmp"
+
+:: Remove .old files from %USERPROFILE%\AppData\LocalLow
+del /s /q /f /a:h "%USERPROFILE%\AppData\LocalLow\*.old"
 
 :: Remove .temp files from %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations\
 del /s /q /f "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations\*.temp"
