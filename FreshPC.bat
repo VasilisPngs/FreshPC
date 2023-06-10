@@ -32,8 +32,8 @@ echo Cleaning temporary files, .dmp files, and .old files...
 echo.
 
 :: Remove temporary files and folders from the current user's profile
-del /f /s /q "%temp_folder%\*.*"
-RD /s /q "%temp_folder%\"
+del /f /s /q "%temp%\*.*"
+RD /s /q "%temp%\"
 
 :: Remove temporary files and folders from all user profiles
 pushd "%SystemDrive%\Users"
